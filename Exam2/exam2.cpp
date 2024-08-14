@@ -1,4 +1,4 @@
-#include <iostream> 
+#include <iostream>
 using namespace std;
 
 int main() {
@@ -8,66 +8,68 @@ int main() {
     int hrStart, minStart, secStart = 0;
     int hrEnd, minEnd, secEnd = 0;
     int hrBest, minBest, secBest = 0;
-    int currHrs, currMins, currSecs = 0;
+    int currSecs = 0;
     float timeCurr = 0.0;
     float timeBest = 0.0;
     bool shouldContinue = true;
 
     while (shouldContinue) {
-        cout << "Start number?";
+        cout << "Start number? ";
         cin >> startNum;
-        
+
+        // Break loop if start number is below 1
         if (startNum < 1) {
             shouldContinue = false;
         } else {
-            ++competitors; 
+            ++competitors;
 
-            cout << "Start time?";
+            cout << "Start time? ";
             cin >> hrStart >> minStart >> secStart;
 
-            cout << "End time?";
+            cout << "End time? ";
             cin >> hrEnd >> minEnd >> secEnd;
 
-            currHrs = (hrEnd - hrStart) - 1;
-            currMins = ((60 - minStart) + minEnd);
-            currSecs =((60 - secStart) + secEnd);
+            // Convert start and end times to total seconds from midnight
+            int startTotalSecs = (hrStart * 3600) + (minStart * 60) + secStart;
+            int endTotalSecs = (hrEnd * 3600) + (minEnd * 60) + secEnd;
 
-            if (currSecs >= 60) {
-                currSecs -= 60;
-                ++currMins; 
+            // If end time is less than start time, add 24 hours to the end time
+            if (endTotalSecs < startTotalSecs) {
+                endTotalSecs += 86400;  // 24 * 3600
             }
 
-            if (currMins >= 60) {
-                currMins -= 60;
-                ++currHrs;
-            }
+            currSecs = endTotalSecs - startTotalSecs;
 
-            timeCurr = ((float(currHrs * 60.0)) + (float(currMins)) + (1.0 * (float(currSecs) / 60.0)));
+            // Convert seconds back to hours, minutes, seconds
+            int currHrs = currSecs / 3600;
+            currSecs %= 3600;
+            int currMins = currSecs / 60;
+            currSecs %= 60;
 
-            if (competitors == 1) {
+            // Calculate time in minutes in order to compaare times
+            timeCurr = (currHrs * 60.0) + currMins + (float(currSecs) / 60.0);
+
+            // Compare times and push if new best
+            if (competitors == 1 || timeCurr < timeBest) {
                 timeBest = timeCurr;
-            } else if (competitors > 1) {
-                if (timeCurr < timeBest) {
-                    timeBest = timeCurr;
-                    startNumBest = startNum;
-                    hrBest = currHrs;
-                    minBest = currMins;
-                    secBest = currSecs;
-                }
+                startNumBest = startNum;
+                hrBest = currHrs;
+                minBest = currMins;
+                secBest = currSecs;
             }
         }
-
     }
 
+    // Check if there are any competitors and announce winner
     if (competitors < 1) {
         cout << "No competitors" << endl;
-    } else if (competitors >= 1) {
+    } else {
         cout << "Winner is starting number: " << startNumBest << endl;
         cout << "Hour: " << hrBest << " Min: " << minBest << " Sec: " << secBest << endl;
         cout << "Number of competitors: " << competitors << endl;
     }
 
-    cout << "The program ends" << endl; 
+    cout << "The program ends" << endl;
 
-    return 0; 
+    return 0;
 }
