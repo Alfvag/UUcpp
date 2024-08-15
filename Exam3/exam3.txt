@@ -1,0 +1,77 @@
+Script started on 2024-08-15 11:29:40+02:00 [TERM="xterm-256color" TTY="/dev/pts/0" COLUMNS="80" LINES="24"]
+[?2004h]0;alexander@pop-os: ~/Documents/UUcpp/Exam3[01;32malexander@pop-os[00m:[01;34m~/Documents/UUcpp/Exam3[00m$ ./exam3 run¨[K
+[?2004lMata in två tal samt en metod för beräkning:
+a - Adderar alla tal i intervallet mellan dina två val
+m - Multiplicerar alla tal i intervallet mellan dina två val
+k - Kvadrerar och adderar summan av talen i ditt intervall
+Mata in ett tal: 3
+Mata in ett tal: 5
+Metod: a
+Resultatet av beräkningen: 12
+[?2004h]0;alexander@pop-os: ~/Documents/UUcpp/Exam3[01;32malexander@pop-os[00m:[01;34m~/Documents/UUcpp/Exam3[00m$ ./exam3 run
+[?2004lMata in två tal samt en metod för beräkning:
+a - Adderar alla tal i intervallet mellan dina två val
+m - Multiplicerar alla tal i intervallet mellan dina två val
+k - Kvadrerar och adderar summan av talen i ditt intervall
+Mata in ett tal: 3
+Mata in ett tal: 5
+Metod: m
+Resultatet av beräkningen: 60
+[?2004h]0;alexander@pop-os: ~/Documents/UUcpp/Exam3[01;32malexander@pop-os[00m:[01;34m~/Documents/UUcpp/Exam3[00m$ ./exam3 run
+[?2004lMata in två tal samt en metod för beräkning:
+a - Adderar alla tal i intervallet mellan dina två val
+m - Multiplicerar alla tal i intervallet mellan dina två val
+k - Kvadrerar och adderar summan av talen i ditt intervall
+Mata in ett tal: 3
+Mata in ett tal: 5
+Metod: l k
+Resultatet av beräkningen: 50
+[?2004h]0;alexander@pop-os: ~/Documents/UUcpp/Exam3[01;32malexander@pop-os[00m:[01;34m~/Documents/UUcpp/Exam3[00m$ ./exam3 run
+[?2004lMata in två tal samt en metod för beräkning:
+a - Adderar alla tal i intervallet mellan dina två val
+m - Multiplicerar alla tal i intervallet mellan dina två val
+k - Kvadrerar och adderar summan av talen i ditt intervall
+Mata in ett tal: -3
+Mata in ett tal: 5
+Metod: m
+Resultatet av beräkningen: 0
+[?2004h]0;alexander@pop-os: ~/Documents/UUcpp/Exam3[01;32malexander@pop-os[00m:[01;34m~/Documents/UUcpp/Exam3[00m$ ./exam3 run
+[?2004lMata in två tal samt en metod för beräkning:
+a - Adderar alla tal i intervallet mellan dina två val
+m - Multiplicerar alla tal i intervallet mellan dina två val
+k - Kvadrerar och adderar summan av talen i ditt intervall
+Mata in ett tal: 5
+Mata in ett tal: 3
+Metod: a
+Resultatet av beräkningen: 12
+[?2004h]0;alexander@pop-os: ~/Documents/UUcpp/Exam3[01;32malexander@pop-os[00m:[01;34m~/Documents/UUcpp/Exam3[00m$ ./exam3 run
+[?2004lMata in två tal samt en metod för beräkning:
+a - Adderar alla tal i intervallet mellan dina två val
+m - Multiplicerar alla tal i intervallet mellan dina två val
+k - Kvadrerar och adderar summan av talen i ditt intervall
+Mata in ett tal: -3
+Mata in ett tal: -5
+Metod: a
+Resultatet av beräkningen: -12
+[?2004h]0;alexander@pop-os: ~/Documents/UUcpp/Exam3[01;32malexander@pop-os[00m:[01;34m~/Documents/UUcpp/Exam3[00m$ ./exam3 run
+[?2004lMata in två tal samt en metod för beräkning:
+a - Adderar alla tal i intervallet mellan dina två val
+m - Multiplicerar alla tal i intervallet mellan dina två val
+k - Kvadrerar och adderar summan av talen i ditt intervall
+Mata in ett tal: 1
+Mata in ett tal: 100
+Metod: k
+Resultatet av beräkningen: 338350
+[?2004h]0;alexander@pop-os: ~/Documents/UUcpp/Exam3[01;32malexander@pop-os[00m:[01;34m~/Documents/UUcpp/Exam3[00m$ ./exam3 run
+[?2004lMata in två tal samt en metod för beräkning:
+a - Adderar alla tal i intervallet mellan dina två val
+m - Multiplicerar alla tal i intervallet mellan dina två val
+k - Kvadrerar och adderar summan av talen i ditt intervall
+Mata in ett tal: 1
+Mata in ett tal: 1000
+Metod: m
+Resultatet av beräkningen: 0
+[?2004h]0;alexander@pop-os: ~/Documents/UUcpp/Exam3[01;32malexander@pop-os[00m:[01;34m~/Documents/UUcpp/Exam3[00m$ exit
+[?2004lexit
+
+Script done on 2024-08-15 11:31:20+02:00 [COMMAND_EXIT_CODE="0"]
