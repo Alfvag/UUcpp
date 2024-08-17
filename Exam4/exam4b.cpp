@@ -8,6 +8,7 @@
 #include <iostream>
 #include <fstream>
 #include <cmath>
+#include <cstdlib>
 using namespace std;
 
 // Globala konstanter:
@@ -49,33 +50,186 @@ const double TOLK_HJALP[ANTAL_SPRAK][ANTAL_BOKSTAVER]=
 // Deklarationer av dina egna funktioner
 // Använd exakt de funktionsnamn som finns nedan
 
-// Funktionen berakna_histogram_abs
-// denna skrevs i A-uppgiften och kan klippas in här
+void berakna_histogram_abs(string indata, int table[2][ANTAL_BOKSTAVER]);
 
-// Funktionen abs_till_rel
+void abs_till_rel(int abs[2][ANTAL_BOKSTAVER], double rel[2][ANTAL_BOKSTAVER], int &sum);
 
-// Funktionen plotta_histogram_rel
+void plotta_histogram_rel(double rel[2][ANTAL_BOKSTAVER]);
 
-// Funktionen tolkning
+void tolkning(double textData[2][ANTAL_BOKSTAVER], const double langRef[4][ANTAL_BOKSTAVER], int sum);
 
-// Funktionen namn_pa_fil
+string namn_pa_fil();
 
-// Funktionen inlasning
+string inlasning(string filename);
 
 //--------------------------------------------------------
 // Huvudprogram:
 
-int main()
-{
+int main() {
+    string fileName;
+    string fileContents;
+    int sum = 0;
 
-  return 0;
+    // Deklarera och fyll första raden med bokstavens ASCII värde och andra raden med antal förekomster (0)
+    int alphabet[2][ANTAL_BOKSTAVER];
+
+    for (int i = 0; i < 2; i++) {
+        for (int j = 0; j < ANTAL_BOKSTAVER; j++) {
+            if (i == 0) {
+                alphabet[i][j] = j + 97;
+            } else {
+                alphabet[i][j] = 0;
+            }
+        }
+    }
+
+    // Deklarera och sätt alla förekomster till 0.0
+    double alphabetRel[2][ANTAL_BOKSTAVER];
+
+    for (int i = 0; i < ANTAL_BOKSTAVER; i++) {
+        alphabetRel[1][i] = 0.0;
+    }
+
+    fileName = namn_pa_fil();
+
+    fileContents = inlasning(fileName);
+
+    berakna_histogram_abs(fileContents, alphabet);
+
+    abs_till_rel(alphabet, alphabetRel, sum);
+
+    tolkning(alphabetRel, TOLK_HJALP, sum);
+
+    plotta_histogram_rel(alphabetRel);
+
+    return 0;
 }
 
 //--------------------------------------------------------
 // Funktionsdefinitioner:
 
+void berakna_histogram_abs(string indata, int table[2][ANTAL_BOKSTAVER]) {
+    for (int i = 0; i < indata.length(); i++) {
+        int currAscii = indata[i];
+        // Kontrollera att tecknet är en bokstav för att utesluta allt utom a-z
+        if (isalpha(currAscii)) {
+            char c = indata[i];
+            int lowerCase = tolower(c);
+            // Subtrahera 97 från bokstavens ASCII värde då det ligger +97 från index ('a' == 97 och ska vara index 0)
+            // Addera 1 till förekomsten där index är bokstaven
+            table[1][lowerCase - 97] += 1;
+        }
+    }
+}
 
+void abs_till_rel(int abs[2][ANTAL_BOKSTAVER], double rel[2][ANTAL_BOKSTAVER], int &sum) {
+    // Summera alla förekomster
+    for (int i = 0; i < ANTAL_BOKSTAVER; i++) {
+        sum += abs[1][i];
+    }
 
+    double sumDouble = sum;
+
+    // Räkna ut relativt värde för varje bokstav, multiplicera med 100 för att få det i antal procent
+    for (int i = 0; i< ANTAL_BOKSTAVER; i++) {
+        rel[1][i] = 100 * ((double(abs[1][i]) / sumDouble));
+    }
+}
+
+void plotta_histogram_rel(double rel[2][ANTAL_BOKSTAVER]) {
+    cout << "Bokstavsfördelning:" << endl << endl;
+
+    for (int i = 0; i < ANTAL_BOKSTAVER; i++) {
+        char bokstav = toupper(i + 97);
+
+        cout << bokstav << " ";
+
+        if (rel[1][i] != 0.0) {
+            // Avrunda till närmsta 0,5%
+            double rounded = round((rel[1][i]) * 2.0) / 2.0;
+            // Räkna ut antalet * som ska representara förekomsten
+            int count = (rounded / 0.5);
+            // Konstruera och skriv ut en sträng med rätt antal *
+            cout << string(count, '*');
+        }
+
+        cout << endl;
+    }
+}
+
+void tolkning(double textData[2][ANTAL_BOKSTAVER], const double langRef[4][ANTAL_BOKSTAVER], int sum) {
+    double sqrSum[ANTAL_SPRAK];
+    double minVal = 100000.0;
+    int indexBest = 0;
+    string langs[ANTAL_SPRAK] = {"Engelska", "Franska", "Svenska", "Tyska"};
+
+    // Beräkna kvadratskillnaden för varje språk
+    for (int i = 0; i < ANTAL_SPRAK; i++) {
+        for (int j = 0; j < ANTAL_BOKSTAVER; j++) {
+            sqrSum[i] += pow((langRef[i][j] - textData[1][j]), 2.0);
+        }
+    }
+
+    cout << endl << "Resultat för bokstäverna A-Z" << endl << endl;
+    cout << "Totala antalet bokstäver: " << sum << endl;
+
+    // Presentera respektive språks kvadratsumma
+    for (int i = 0; i < ANTAL_SPRAK; i++) {
+        cout << langs[i] << " har kvadratsumma = " << sqrSum[i] << endl;
+    }
+
+    // Hitta minsta värdet bland kvadratsummorna
+    for (int i = 0; i < 4; ++i) {
+        if (sqrSum[i] < minVal) {
+            minVal = sqrSum[i];
+            indexBest = i;
+        }
+    }
+
+    cout << "Det är mest troligt att språket är " << langs[indexBest] << endl << endl;
+}
+
+string namn_pa_fil() {
+    string fileName;
+    string extension = ".txt";
+
+    // Be om filnamn
+    cout << "Filnamn:" << endl;
+    getline(cin, fileName);
+
+    // Leta efter .txt ändelse
+    size_t found = fileName.rfind(extension);
+
+    // Lägg till .txt om det inte finns
+    if (found == std::string::npos || found != fileName.length() - 4) {
+        fileName += extension;
+    }
+
+    return fileName;
+}
+
+string inlasning(string filename) {
+    string line;
+    string contents;
+
+    // Öppna fil
+    ifstream file(filename);
+
+    // Fel om filen inte finns    
+    if (!file) {
+        cout << "Error: Unable to open file!" << endl;
+        exit( EXIT_FAILURE );
+    }
+    
+    // Lägg till varje rad i filen till en sträng
+    while (getline(file, line)) {
+        contents += line;
+    }
+
+    file.close();
+
+    return contents;
+}
 
 // -------------------------------------------------------
 // Rapport om uppgiften

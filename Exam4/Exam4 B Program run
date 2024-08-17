@@ -1,0 +1,174 @@
+Script started on 2024-08-17 03:49:31+02:00 [TERM="xterm-256color" TTY="/dev/pts/0" COLUMNS="80" LINES="24"]
+alexander@pop-os:~/Documents/UUcpp/Exam4$ ./exam4b run
+Filnamn:
+doyle
+
+Resultat för bokstäverna A-Z
+
+Totala antalet bokstäver: 12885
+Engelska har kvadratsumma = 1.75771
+Franska har kvadratsumma = 96.1956
+Svenska har kvadratsumma = 73.3371
+Tyska har kvadratsumma = 116.072
+Det är mest troligt att språket är Engelska
+
+Bokstavsfördelning:
+
+A ****************
+B ***
+C *******
+D ********
+E ************************
+F ****
+G ***
+H ************
+I ***************
+J 
+K **
+L ********
+M *****
+N *************
+O ***************
+P ****
+Q 
+R ***********
+S *************
+T ******************
+U ******
+V **
+W ****
+X 
+Y *****
+Z 
+alexander@pop-os:~/Documents/UUcpp/Exam4$ ./exam4b run
+Filnamn:
+goethe.txt
+
+Resultat för bokstäverna A-Z
+
+Totala antalet bokstäver: 14027
+Engelska har kvadratsumma = 107.856
+Franska har kvadratsumma = 85.205
+Svenska har kvadratsumma = 160.318
+Tyska har kvadratsumma = 1.04313
+Det är mest troligt att språket är Tyska
+
+Bokstavsfördelning:
+
+A ***********
+B ***
+C *******
+D *********
+E *********************************
+F ***
+G *******
+H ***********
+I ******************
+J 
+K **
+L *******
+M ******
+N **********************
+O ****
+P *
+Q 
+R ************
+S **************
+T ***********
+U ********
+V **
+W ****
+X 
+Y *
+Z ***
+alexander@pop-os:~/Documents/UUcpp/Exam4$ ./exam4b run
+Filnamn:
+lagerlof
+
+Resultat för bokstäverna A-Z
+
+Totala antalet bokstäver: 12221
+Engelska har kvadratsumma = 86.6804
+Franska har kvadratsumma = 145.722
+Svenska har kvadratsumma = 8.88258
+Tyska har kvadratsumma = 170.223
+Det är mest troligt att språket är Svenska
+
+Bokstavsfördelning:
+
+A ***********************
+B **
+C ***
+D ************
+E *******************
+F ****
+G ********
+H *******
+I ********
+J ***
+K *******
+L **********
+M *******
+N ******************
+O *********
+P ***
+Q 
+R ***************
+S **************
+T ******************
+U ***
+V ******
+W 
+X 
+Y *
+Z 
+alexander@pop-os:~/Documents/UUcpp/Exam4$ ./exam4b run
+Filnamn:
+verne.txt
+
+Resultat för bokstäverna A-Z
+
+Totala antalet bokstäver: 11417
+Engelska har kvadratsumma = 112.425
+Franska har kvadratsumma = 0.885142
+Svenska har kvadratsumma = 149.256
+Tyska har kvadratsumma = 90.491
+Det är mest troligt att språket är Franska
+
+Bokstavsfördelning:
+
+A ****************
+B ***
+C *******
+D ********
+E ***********************************
+F **
+G **
+H *
+I **************
+J *
+K 
+L ***********
+M ******
+N ***************
+O **********
+P ******
+Q **
+R **************
+S *****************
+T **************
+U ************
+V ***
+W 
+X *
+Y *
+Z 
+alexander@pop-os:~/Documents/UUcpp/Exam4$ ./exam4b run
+Filnamn:
+finnsej.txt
+Error: Unable to open file!
+alexander@pop-os:~/Documents/UUcpp/Exam4$ exit
+exit
+
+Script done on 2024-08-17 03:50:43+02:00 [COMMAND_EXIT_CODE="1"]
+
