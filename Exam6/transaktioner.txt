@@ -1,5 +1,0 @@
-Datum   Typ     Namn    Belopp  Antal och lista av kompisar
-190721 mat Eva 200.000000 1 Bosse 
-190722 mat Eva 400.000000 1 Bosse 
-190725 transp Eva 600.000000 1 Bosse 
-190725 mat Bosse 200.000000 1 Eva 
