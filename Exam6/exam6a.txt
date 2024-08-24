@@ -1,0 +1,102 @@
+Script started on 2024-08-20 22:56:55+02:00 [TERM="xterm-256color" TTY="/dev/pts/0" COLUMNS="80" LINES="24"]
+[?2004h]0;alexander@pop-os: ~/Documents/UUcpp/Exam6[01;32malexander@pop-os[00m:[01;34m~/Documents/UUcpp/Exam6[00m$ ./exam6a run
+[?2004lStartar med att läsa från en fil.
+
+Välj i menyn nedan:
+0. Avsluta. Alla transaktioner sparas på fil.
+1. Skriv ut information om alla transaktioner.
+2. Läs in en transaktion från tangentbordet.
+3. Beräkna totala kostnaden.
+4. Hur mycket ärr en viss person skyldig?
+5. Hur mycket ligger en viss person ute med?
+6. Lista alla personer mm och FIXA
+1
+
+Datum   Typ     Namn    Belopp  Antal och lista av kompisar
+190615 transp Eva 6000.000000 5 Bosse Kristin Paul Torsten Stina 
+190721 mat Eva 300.000000 2 Bosse Kristin 
+190721 mat Paul 400.000000 2 Torsten Stina 
+190721 transp Bosse 5000.000000 3 Eva Kristin Paul 
+190721 transp Stina 5000.000000 1 Torsten 
+190722 boende Kristin 200.000000 1 Eva 
+190722 mat Eva 300.000000 2 Kristin Bosse 
+190723 mat Torsten 300.000000 2 Paul Stina 
+190724 mat Paul 200.000000 1 Stina 
+190725 transp Eva 600.000000 3 Bosse Kristin Paul 
+   0.000000 0 
+
+Välj i menyn nedan:
+0. Avsluta. Alla transaktioner sparas på fil.
+1. Skriv ut information om alla transaktioner.
+2. Läs in en transaktion från tangentbordet.
+3. Beräkna totala kostnaden.
+4. Hur mycket ärr en viss person skyldig?
+5. Hur mycket ligger en viss person ute med?
+6. Lista alla personer mm och FIXA
+6
+
+Nu skapar vi en personarray och reder ut det hela!
+Eva ligger ute med 5850 och är skyldig 1350. Skall ha 4500.000000 från potten!
+Paul ligger ute med 366.667 och är skyldig 2500. Skall ha -2133.333333 från potten!
+Bosse ligger ute med 3750 och är skyldig 1350. Skall ha 2400.000000 från potten!
+Stina ligger ute med 2500 och är skyldig 1333.33. Skall ha 1166.666667 från potten!
+Kristin ligger ute med 100 och är skyldig 2600. Skall ha -2500.000000 från potten!
+Torsten ligger ute med 200 och är skyldig 3633.33. Skall ha -3433.333333 från potten!
+
+Välj i menyn nedan:
+0. Avsluta. Alla transaktioner sparas på fil.
+1. Skriv ut information om alla transaktioner.
+2. Läs in en transaktion från tangentbordet.
+3. Beräkna totala kostnaden.
+4. Hur mycket ärr en viss person skyldig?
+5. Hur mycket ligger en viss person ute med?
+6. Lista alla personer mm och FIXA
+0
+
+[?2004h]0;alexander@pop-os: ~/Documents/UUcpp/Exam6[01;32malexander@pop-os[00m:[01;34m~/Documents/UUcpp/Exam6[00m$ ./excam[K[K[Kam6a run
+[?2004lStartar med att läsa från en fil.
+
+Välj i menyn nedan:
+0. Avsluta. Alla transaktioner sparas på fil.
+1. Skriv ut information om alla transaktioner.
+2. Läs in en transaktion från tangentbordet.
+3. Beräkna totala kostnaden.
+4. Hur mycket ärr en viss person skyldig?
+5. Hur mycket ligger en viss person ute med?
+6. Lista alla personer mm och FIXA
+1
+
+Datum   Typ     Namn    Belopp  Antal och lista av kompisar
+190721 mat Eva 200.000000 1 Bosse 
+190722 mat Eva 400.000000 1 Bosse 
+190725 transp Eva 600.000000 1 Bosse 
+190725 mat Bosse 200.000000 1 Eva 
+
+Välj i menyn nedan:
+0. Avsluta. Alla transaktioner sparas på fil.
+1. Skriv ut information om alla transaktioner.
+2. Läs in en transaktion från tangentbordet.
+3. Beräkna totala kostnaden.
+4. Hur mycket ärr en viss person skyldig?
+5. Hur mycket ligger en viss person ute med?
+6. Lista alla personer mm och FIXA
+6
+
+Nu skapar vi en personarray och reder ut det hela!
+Eva ligger ute med 600 och är skyldig 100. Skall ha 500.000000 från potten!
+Bosse ligger ute med 100 och är skyldig 600. Skall ha -500.000000 från potten!
+
+Välj i menyn nedan:
+0. Avsluta. Alla transaktioner sparas på fil.
+1. Skriv ut information om alla transaktioner.
+2. Läs in en transaktion från tangentbordet.
+3. Beräkna totala kostnaden.
+4. Hur mycket ärr en viss person skyldig?
+5. Hur mycket ligger en viss person ute med?
+6. Lista alla personer mm och FIXA
+0
+
+[?2004h]0;alexander@pop-os: ~/Documents/UUcpp/Exam6[01;32malexander@pop-os[00m:[01;34m~/Documents/UUcpp/Exam6[00m$ exit
+[?2004lexit
+
+Script done on 2024-08-20 22:57:44+02:00 [COMMAND_EXIT_CODE="0"]
