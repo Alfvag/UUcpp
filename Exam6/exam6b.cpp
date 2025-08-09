@@ -35,22 +35,26 @@ class Transaktion {
         string namn;
         double belopp;
         int antal_kompisar;
-        string kompisar[MAX_PERSONER];
+        string *kompisar;
 
     public:
         Transaktion() {
             belopp = 0.0;
-            antal_kompisar = 0;}
-        ~Transaktion() {}
+            antal_kompisar = 0;
+        }
+        ~Transaktion() {
+            free(kompisar);
+        }
+        Transaktion &operator=(const Transaktion &t);
         string hamtaNamn();
         double hamtaBelopp();
         int hamtaAntalKompisar();
-        string hamtaKompisNamn(int index);
+        string hamtaKompisNamn(); //TODO Fixa
         bool finnsKompis(const string &namnet);
         bool lasIn(istream &is);
         void skrivUt(ostream &os);
         void skrivTitel(ostream &os);
-}; 
+};
 
 class PersonLista {
     private:
@@ -200,6 +204,23 @@ void Person::skrivUt(ostream &os) {
     }
 }
 
+Transaktion& Transaktion::operator=( const Transaktion& t)
+{
+  if (this != &t)
+    {
+      delete[] kompisar;
+      datum          = t.datum;
+      typ            = t.typ;
+      namn           = t.namn;
+      belopp         = t.belopp;
+      antal_kompisar = t.antal_kompisar;
+      kompisar       = new string[antal_kompisar];
+      for (int i=0; i < antal_kompisar; i++)
+	kompisar[i] = t.kompisar[i];
+    }
+  return *this;
+}
+
 string Transaktion::hamtaNamn() {
     return namn;
 }
@@ -214,6 +235,7 @@ int Transaktion::hamtaAntalKompisar() {
 
 string Transaktion::hamtaKompisNamn(int index) {
     return kompisar[index];
+    //TODO Fixa
 }
 
 bool Transaktion::finnsKompis(const string &namnet) {
