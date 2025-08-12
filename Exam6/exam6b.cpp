@@ -41,15 +41,18 @@ class Transaktion {
         Transaktion() {
             belopp = 0.0;
             antal_kompisar = 0;
+            kompisar = nullptr; // Starta med en null-pointer
         }
         ~Transaktion() {
-            free(kompisar);
+            if (kompisar != nullptr) {
+                delete[] kompisar; // Frige minnet om det har allokerats
+            }
         }
         Transaktion &operator=(const Transaktion &t);
         string hamtaNamn();
         double hamtaBelopp();
         int hamtaAntalKompisar();
-        string hamtaKompisNamn(); //TODO Fixa
+        string hamtaKompisNamn(int index);
         bool finnsKompis(const string &namnet);
         bool lasIn(istream &is);
         void skrivUt(ostream &os);
@@ -59,30 +62,40 @@ class Transaktion {
 class PersonLista {
     private:
         int antal_personer;
-        Person personer[MAX_PERSONER];
+        Person *personer;
 
     public:
         PersonLista() {
             antal_personer = 0;
+            personer = nullptr; // Starta med en null-pointer
         }
-        ~PersonLista() {}
-        void laggTill(Person ny_person);
+        ~PersonLista() {
+            if (personer != nullptr) {
+                delete[] personer; // Frige minnet om det har allokerats
+            }
+        };
+        void laggTill(const Person& person);
         void skrivUtOchFixa(ostream &os);
         double summaSkyldig();
         double summaBetalat();
-        bool finnsPerson(const string& namn);
-}; 
+        bool finnsPerson(const string &namn);
+};
 
 class TransaktionsLista {
     private:
         int antal_transaktioner;
-        Transaktion transaktioner[MAX_TRANSAKTIONER];
+        Transaktion *transaktioner;
 
     public:
         TransaktionsLista() {
             antal_transaktioner = 0;
+            transaktioner = nullptr;
         }
-        ~TransaktionsLista() {}
+        ~TransaktionsLista() {
+            if (transaktioner != nullptr) {
+                delete[] transaktioner; // Frige minnet om det har allokerats
+            }
+        }
         void lasIn(istream & is);
         void skrivUt(ostream & os);
         void laggTill(Transaktion & t);
@@ -193,12 +206,11 @@ double Person::hamtaSkyldig() {
 // Formatera och skriv ut en persons data
 void Person::skrivUt(ostream &os) {
 
-     os << namn << " ligger ute med " << std::setprecision(6) << betalat_andras << " och är skyldig " << std::setprecision(6) << skyldig;
+    os << namn << " ligger ute med " << std::setprecision(6) << betalat_andras << " och är skyldig " << std::setprecision(6) << skyldig;
 
     if ((betalat_andras - skyldig) < 0) {
         // Om personen är skyldig pengar, skriv ut det
         os << ". Skall lägga " << std::setprecision(6) << -1 * (betalat_andras - skyldig) << " till potten!" << endl;
-        return;
     } else {
         os << ". Skall ha " << std::setprecision(6) << (betalat_andras - skyldig) << " från potten!" << endl;
     }
@@ -235,7 +247,6 @@ int Transaktion::hamtaAntalKompisar() {
 
 string Transaktion::hamtaKompisNamn(int index) {
     return kompisar[index];
-    //TODO Fixa
 }
 
 bool Transaktion::finnsKompis(const string &namnet) {
@@ -253,9 +264,16 @@ bool Transaktion::lasIn(istream &is) {
     // Läs in de delarna av transaktionen vi är säkra på
     if (is >> datum >> typ >> namn >> belopp >> antal_kompisar) {
         // Om det är kompisar med i transaktionen så läser vi även in dem
+
+        string *ny_kompisar = new string[antal_kompisar];
+
         for (int i = 0; i < antal_kompisar; i++) {
-            is >> kompisar[i];
+            is >> ny_kompisar[i];
         }
+
+        delete[] kompisar; // Rensa tidigare allokerat minne
+        kompisar = ny_kompisar; // Uppdatera kompisar med den nya arrayen
+
         return true;
     }
     // Returnera falskt om det av någon anledning inte går
@@ -289,10 +307,23 @@ void Transaktion::skrivTitel(ostream &os) {
     
 }
 
-void PersonLista::laggTill(Person ny_person) {
+void PersonLista::laggTill(const Person& person) {
     // Lägg till en ny person och öka räknaren med ett
     if (antal_personer < MAX_PERSONER) { 
-        personer[antal_personer] = ny_person;
+
+        Person* ny_personer = new Person[antal_personer + 1];
+        
+        for (int i = 0; i < antal_personer; i++) {
+            ny_personer[i] = personer[i];
+        }
+        
+        ny_personer[antal_personer] = person;
+        
+        if (personer != nullptr) {
+            delete[] personer;
+        }
+        
+        personer = ny_personer;
         antal_personer++;
     }
 }
@@ -337,11 +368,14 @@ bool PersonLista::finnsPerson(const string &namn) {
 void TransaktionsLista::lasIn(istream &is) {
     string line;
 
-    // Läs in en rad från filen och skicka till Transaktion, öka på räknaren
+    // Läs in en rad från filen och skicka till Transaktion
     while (getline(is, line) && antal_transaktioner < MAX_TRANSAKTIONER) {
         std::istringstream iss(line);
-        if (transaktioner[antal_transaktioner].lasIn(iss)) {
-            antal_transaktioner++;
+
+        Transaktion transaktion;
+
+        if (transaktion.lasIn(iss)) {
+            this->laggTill(transaktion);
         }
     }
 }
@@ -361,11 +395,22 @@ void TransaktionsLista::skrivUt(ostream &os) {
 void TransaktionsLista::laggTill(Transaktion &t) {
     // Lägg till ett objekt och öka räknaren
     if (antal_transaktioner < MAX_TRANSAKTIONER) {
-        transaktioner[antal_transaktioner] = t;
+        Transaktion *ny_transaktioner = new Transaktion[antal_transaktioner + 1];
+
+        for (int i = 0; i < antal_transaktioner; i++) {
+            ny_transaktioner[i] = transaktioner[i];
+        }
+
+        ny_transaktioner[antal_transaktioner] = t;
+
+        delete[] transaktioner; // Rensa tidigare allokerat minne
+
+        transaktioner = ny_transaktioner; // Uppdatera transaktioner med den nya arrayen
+
         antal_transaktioner++;
     }
 
-    this->FixaPersoner();
+    FixaPersoner();
 }
 
 double TransaktionsLista::totalKostnad() {
